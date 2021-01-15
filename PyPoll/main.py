@@ -29,16 +29,14 @@ with open(csvpath) as csvfile:
     # Read the header row first
     csv_header = next(csvreader)
     #initial Variables
-    total_vote=1
-    num_candidate=0
     candidate_data={"Candidate": [],
                     "Votes": [],
                     "Perc Votes": []
                     }
+    total_vote=1
     csv_initial=next(csvreader)
     name=str(csv_initial[2])
     candidate_data["Candidate"]= [name]
-
     # Read each row of data after the header
     for row in csvreader:
         total_vote = total_vote + 1
@@ -51,7 +49,6 @@ with open(csvpath) as csvfile:
 
         if found==False :
             candidate_data["Candidate"].append(str(row[2]))
-            num_candidate=num_candidate+1
            
 #calculate num of votes per candidate and % of votes           
 i=0
@@ -67,19 +64,19 @@ i=0
 filepath = os.path.join("output","election_result.txt")
 _, filename = os.path.split(filepath)
 file = open(filepath, "w")
+file.write("____________________________________" + "\n")
+file.write("           Election Result          " + "\n")
 file.write("------------------------------------" + "\n")
-file.write("             Election Result             " + "\n")
-file.write("____________________________________" + "\n")
-file.write ("      Total Votes: " + str(total_vote) +  "\n")
-file.write("____________________________________" + "\n")
+file.write ("        Total Votes: " + str(total_vote) +  "\n")
+file.write("------------------------------------" + "\n")
 for i in range(len(candidate_data["Candidate"])):
     file.write(str(i+1) + ".-" + str(candidate_data["Candidate"][i]) +": %"+  str(candidate_data["Perc Votes"][i]) + " ("+ str(candidate_data["Votes"][i])+")"  + "\n")
 
-file.write("____________________________________" + "\n")
+file.write("-----------------------------------" + "\n")
 #Return the index of the Candidate with max vote in order to select and print the winner
 max=candidate_data["Votes"].index(max(candidate_data["Votes"]))
 file.write("         Winner: " + str((candidate_data["Candidate"][max])) + "\n")
-file.write("------------------------------------"+ "\n")
+file.write("___________________________________"+ "\n")
 file.close()
 
 #Print using the file .txt created
