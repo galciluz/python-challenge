@@ -51,13 +51,13 @@ for i in range(len-1):
             pfchange.append(change)
 
 #calculating 
-ave_value= average(pfchange)
+ave_value= format(average(pfchange),"0.2f")
 max_value=max(list_proloss)
 date1=search_date(max_value)
 min_value=min(list_proloss)
 date2=search_date(min_value)
 
-#print usings values
+#print usings code values
 #print("                   Financial Analysis                ")
 #print("_____________________________________________________")
 #print (f"Total Month:  {month}")
@@ -67,7 +67,6 @@ date2=search_date(min_value)
 #print (f"Greatest Decrease in Profits:  {min_value} {date2}")
 #print("______________________________________________________")
 
-
 #create a file .txt and saved all the Financial Analysis results
 filepath = os.path.join("output","financial_analysis.txt")
 _, filename = os.path.split(filepath)
@@ -75,17 +74,14 @@ file = open(filepath, "w")
 file.write("                  Financial Analysis                 " + "\n")
 file.write("-----------------------------------------------------" + "\n")
 file.write("Total Month: "  + str(month) + "\n")
-file.write("Total Profit & Losses: " + str(total_proloss) + "\n")
-file.write("Average Profit & Losses: " + str(ave_value) + "\n")
-file.write("Greatest Increase in Profits: "  + str(max_value) + " " + str(date1) + "\n")
-file.write("Greatest Decrease in Profits: "  + str(min_value) + " " + str(date2) + "\n")
+file.write("Total Profit & Losses: $" + str(total_proloss) + "\n")
+file.write("Average Profit & Losses: $" + str(ave_value) + "\n")
+file.write("Greatest Increase in Profits: $"  + " " + str(date1) +" ("+ str(max_value) +")"  + "\n")
+file.write("Greatest Decrease in Profits: $"  + " " + str(date2) +" ("+ str(min_value) +")"  + "\n")
 file.write("-----------------------------------------------------" + os.linesep)
 file.close()
 
-#Print using the file .txt created
-print()
+#Print results using the file .txt created
 file = open(filepath, "r")
-linesFile = file.readlines()
-for line in linesFile:
-    print (line)
+print(file.read())
 file.close
