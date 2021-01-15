@@ -7,5 +7,5 @@ PyBank &amp; PyPoll
 
 ## PyPoll
 
-![Vote Counting](Pypoll/images/election_result.png)
+![Vote Counting](PyPoll/images/election_result.png)
 
